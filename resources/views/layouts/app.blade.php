@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'La-Ayat') }}</title>
+        <title>{{ config('app.name', 'LA-AYAT') }}</title>
 
         <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
         <!-- Google Fonts: Syne & Outfit -->
@@ -177,7 +177,7 @@
                 </form>
             </div>
         </div>
-    </header>
+        </header>
 
         <div id="mobile-sidebar" class="fixed inset-y-0 left-0 w-72 bg-white shadow-2xl transform -translate-x-full transition-transform duration-300 z-[60] flex flex-col">
             <div class="p-5 flex justify-between items-center border-b border-black/5">
