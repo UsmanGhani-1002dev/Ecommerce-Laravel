@@ -17,4 +17,19 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function getBadgeAttribute()
+    {
+        if ($this->sale_price && $this->sale_price < $this->regular_price) {
+            $discount = round((($this->regular_price - $this->sale_price) / $this->regular_price) * 100);
+            return "-{$discount}%";
+        }
+
+        if ($this->featured) {
+            return 'Featured';
+        }
+
+        return null;
+    }
 }
+

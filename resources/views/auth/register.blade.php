@@ -30,21 +30,21 @@
                         @csrf
 
                         <div>
-                            <input type="text" name="name" id="name" placeholder="Name" :value="old('name')" class="w-full border p-3 rounded focus:outline-none focus:border-primary transition" required autofocus autocomplete="name"/>
+                            <input type="text" name="name" id="name" placeholder="Name" value="{{old('name')}}" class="w-full border p-3 rounded focus:outline-none focus:border-primary transition" required autofocus autocomplete="name"/>
                             @error('name')
                                 <p class="text-sm text-red-600 mt-1 font-semibold">{{ $message }}</p>
                             @enderror
                         </div>
                         
                         <div>
-                            <input type="email" placeholder="Email Address *" id="email" name="email" :value="old('email')" class="w-full border p-3 rounded focus:outline-none focus:border-primary transition" required autocomplete="username" />
+                            <input type="email" placeholder="Email Address *" id="email" name="email" value="{{old('email')}}" class="w-full border p-3 rounded focus:outline-none focus:border-primary transition" required autocomplete="username" />
                             @error('email')
                                 <p class="text-sm text-red-600 mt-1 font-semibold">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div>
-                            <input type="number" placeholder="Mobile Number" name="mobile" id="mobile" :value="old('mobile')" class="w-full border p-3 rounded focus:outline-none focus:border-primary transition" required required autocomplete="mobile"/>
+                            <input type="number" placeholder="Mobile Number" name="mobile" id="mobile" value="{{old('mobile')}}" class="w-full border p-3 rounded focus:outline-none focus:border-primary transition" required autocomplete="mobile"/>
                             @error('mobile')
                                 <p class="text-sm text-red-600 mt-1 font-semibold">{{ $message }}</p>
                             @enderror

@@ -60,8 +60,7 @@
                     <!-- Left: Primary Nav -->
                     <nav>
                         <ul class="flex items-center gap-9 text-[13px] font-semibold tracking-[0.12em] uppercase text-[#1a1a1a]">
-                            <li><a href="{{ route('home.index') }}" class="relative hover:text-primary transition-colors after:absolute after:left-0 after:-bottom-1.5 after:h-px after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Women</a></li>
-                            <li><a href="{{ route('home.index') }}" class="relative hover:text-primary transition-colors after:absolute after:left-0 after:-bottom-1.5 after:h-px after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Men</a></li>
+                            <li><a href="{{ route('shop.index') }}" class="relative hover:text-primary transition-colors after:absolute after:left-0 after:-bottom-1.5 after:h-px after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Shop</a></li>
                             <li><a href="{{ route('home.index') }}" class="relative hover:text-primary transition-colors after:absolute after:left-0 after:-bottom-1.5 after:h-px after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">New In</a></li>
                             <li><a href="{{ route('home.index') }}" class="relative text-primary hover:opacity-70 transition-opacity">Sale</a></li>
                         </ul>

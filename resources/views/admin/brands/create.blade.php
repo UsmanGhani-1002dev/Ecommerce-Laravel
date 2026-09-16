@@ -15,14 +15,14 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Brand Name *</label>
-                    <input type="text" id="name" name="name" placeholder="e.g. Samsung" value="{{ old('name') }}" class="w-full border px-4 py-2 rounded-lg outline-none focus:ring-1 focus:ring-primary">
+                    <input type="text" id="name" name="name" placeholder="e.g. Gucci" value="{{ old('name') }}" class="w-full border px-4 py-2 rounded-lg outline-none focus:ring-1 focus:ring-primary">
                     @error('name')
                         <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
                     @enderror
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Brand Slug</label>
-                    <input type="text" id="slug" name="slug" placeholder="samsung" value="{{ old('slug') }}" class="w-full border px-4 py-2 rounded-lg bg-gray-50 outline-none">
+                    <input type="text" id="slug" name="slug" placeholder="gucci" value="{{ old('slug') }}" class="w-full border px-4 py-2 rounded-lg bg-gray-50 outline-none">
                 </div>
             </div>
 

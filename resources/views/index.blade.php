@@ -196,10 +196,10 @@
 
             @php
                 $newArrivals = [
-                    ['name' => 'Oversized Wool Blazer',  'price' => 189, 'old' => null, 'badge' => 'New',  'img' => 'assets/images/product/product-01.jpg', 'swatches' => ['#2b2b2b','#b5764b','#d9cbb3']],
-                    ['name' => 'Pleated Midi Skirt',     'price' => 95,  'old' => 130,  'badge' => '-27%', 'img' => 'assets/images/product/product-02.jpg', 'swatches' => ['#1a1a1a','#7d8a99']],
-                    ['name' => 'Ribbed Knit Sweater',    'price' => 78,  'old' => null, 'badge' => 'New',  'img' => 'assets/images/product/product-03.jpg', 'swatches' => ['#e4dac6','#915c37','#2b2b2b']],
-                    ['name' => 'Tailored Linen Trousers','price' => 110, 'old' => null, 'badge' => null,   'img' => 'assets/images/product/product-04.jpg', 'swatches' => ['#d9cbb3','#3a3a3a']],
+                    ['name' => 'Oversized Wool Blazer',  'price' => 189, 'old' => null, 'badge' => 'New',  'img' => 'assets/images/product/product-01.jpg'],
+                    ['name' => 'Pleated Midi Skirt',     'price' => 95,  'old' => 130,  'badge' => '-27%', 'img' => 'assets/images/product/product-02.jpg'],
+                    ['name' => 'Ribbed Knit Sweater',    'price' => 78,  'old' => null, 'badge' => 'New',  'img' => 'assets/images/product/product-03.jpg'],
+                    ['name' => 'Tailored Linen Trousers','price' => 110, 'old' => null, 'badge' => null,   'img' => 'assets/images/product/product-04.jpg'],
                 ];
             @endphp
 
@@ -229,12 +229,7 @@
                         </div>
 
                         <div class="mt-4">
-                            <div class="flex items-center gap-1.5 mb-2">
-                                @foreach ($p['swatches'] as $sw)
-                                    <span class="w-3.5 h-3.5 rounded-full border border-black/10" style="background: {{ $sw }}"></span>
-                                @endforeach
-                            </div>
-                            <h4 class="text-sm font-semibold text-[#1a1a1a]">
+                            <h4 class="text-md font-semibold text-[#1a1a1a]">
                                 <a href="{{ route('home.index') }}" class="hover:text-primary transition-colors">{{ $p['name'] }}</a>
                             </h4>
                             <div class="flex items-center gap-2 mt-1">
