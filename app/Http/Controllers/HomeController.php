@@ -9,8 +9,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $new_products = Product::where('status','1')->orderBy('created_at','desc')->take(4)->get();
+        $newArrivals = Product::where('status','1')->orderBy('created_at','desc')->take(4)->get();
         $featured_products = Product::where('status','1')->where('featured','1')->orderBy('created_at','desc')->take(8)->get();
-        return view('index',compact('new_products','featured_products'));
+        return view('index',compact('newArrivals','featured_products'));
     }
 }

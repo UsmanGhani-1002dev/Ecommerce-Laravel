@@ -194,25 +194,18 @@
                 <p class="text-gray-500 mt-4 leading-relaxed">Considered pieces designed to last — the latest additions to the La-Ayat wardrobe.</p>
             </div>
 
-            @php
-                $newArrivals = [
-                    ['name' => 'Oversized Wool Blazer',  'price' => 189, 'old' => null, 'badge' => 'New',  'img' => 'assets/images/product/product-01.jpg'],
-                    ['name' => 'Pleated Midi Skirt',     'price' => 95,  'old' => 130,  'badge' => '-27%', 'img' => 'assets/images/product/product-02.jpg'],
-                    ['name' => 'Ribbed Knit Sweater',    'price' => 78,  'old' => null, 'badge' => 'New',  'img' => 'assets/images/product/product-03.jpg'],
-                    ['name' => 'Tailored Linen Trousers','price' => 110, 'old' => null, 'badge' => null,   'img' => 'assets/images/product/product-04.jpg'],
-                ];
-            @endphp
-
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
                 @foreach ($newArrivals as $p)
                     <div class="group">
                         <div class="relative overflow-hidden rounded-xl bg-white aspect-[3/4]">
-                            <a href="{{ route('home.index') }}" class="block w-full h-full">
-                                <img src="{{ asset($p['img']) }}" alt="{{ $p['name'] }}"
-                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                            <a href="{{ route('shop.productDetails', $p->slug) }}" class="block w-full h-full">
+                                <img src="{{ asset('uploads/products/thumbnails/' . $p->image) }}" alt="{{ $p->name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                             </a>
-                            @if ($p['badge'])
-                                <span class="absolute top-3 left-3 {{ str_contains($p['badge'], '%') ? 'bg-primary' : 'bg-[#1a1a1a]' }} text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full">{{ $p['badge'] }}</span>
+                            
+                            @if ($p->badge)
+                                <span class="absolute top-3 left-3 {{ str_contains($p->badge, '%') ? 'bg-primary' : 'bg-[#1a1a1a]' }} text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full">
+                                    {{ $p->badge }}
+                                </span>
                             @endif
 
                             <!-- Wishlist -->
@@ -229,13 +222,15 @@
                         </div>
 
                         <div class="mt-4">
-                            <h4 class="text-md font-semibold text-[#1a1a1a]">
-                                <a href="{{ route('home.index') }}" class="hover:text-primary transition-colors">{{ $p['name'] }}</a>
+                            <h4 class="text-lg font-semibold text-[#1a1a1a]">
+                                <a href="{{ route('shop.productDetails', $p->slug) }}" class="hover:text-primary transition-colors">{{ $p->name }}</a>
                             </h4>
                             <div class="flex items-center gap-2 mt-1">
-                                <span class="text-[#1a1a1a] font-bold">${{ number_format($p['price'], 2) }}</span>
-                                @if ($p['old'])
-                                    <span class="text-gray-400 line-through text-sm">${{ number_format($p['old'], 2) }}</span>
+                                @if($p->sale_price)
+                                    <span class="text-[#1a1a1a] font-bold">${{ number_format($p->sale_price, 2) }}</span>
+                                    <span class="text-gray-400 line-through text-sm">${{ number_format($p->regular_price, 2) }}</span>
+                                @else
+                                    <span class="text-[#1a1a1a] font-bold">${{ number_format($p->regular_price, 2) }}</span>
                                 @endif
                             </div>
                         </div>
@@ -244,7 +239,7 @@
             </div>
 
             <div class="text-center mt-14">
-                <a href="{{ route('home.index') }}" class="inline-flex items-center gap-3 border-2 border-[#1a1a1a] text-[#1a1a1a] px-10 py-4 text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#1a1a1a] hover:text-white transition-colors duration-300">
+                <a href="{{ route('shop.index') }}" class="inline-flex items-center gap-3 border-2 border-[#1a1a1a] text-[#1a1a1a] px-10 py-4 text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#1a1a1a] hover:text-white transition-colors duration-300">
                     View All New In <i class="ri-arrow-right-line"></i>
                 </a>
             </div>
@@ -296,7 +291,7 @@
                 </div>
             </div>
 
-            @php
+            {{-- @php
                 $trending = [
                     ['name' => 'Silk Slip Dress',      'price' => 145, 'img' => 'assets/images/product/product-05.jpg'],
                     ['name' => 'Cropped Denim Jacket', 'price' => 120, 'img' => 'assets/images/product/product-06.jpg'],
@@ -305,27 +300,48 @@
                     ['name' => 'Wide-Leg Trousers',    'price' => 98,  'img' => 'assets/images/product/product-09.jpg'],
                     ['name' => 'Quilted Overshirt',    'price' => 135, 'img' => 'assets/images/product/product-10.jpg'],
                 ];
-            @endphp
+            @endphp --}}
 
             <div class="swiper-container featured-slider overflow-hidden">
                 <div class="swiper-wrapper pb-2">
-                    @foreach ($trending as $p)
+                    @foreach ($featured_products as $fp)
                         <div class="swiper-slide">
                             <div class="group">
                                 <div class="relative overflow-hidden rounded-xl bg-gray-100 aspect-[3/4]">
-                                    <a href="{{ route('home.index') }}"><img src="{{ asset($p['img']) }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="{{ $p['name'] }}"></a>
+                                    <a href="{{ route('shop.productDetails', $fp->slug) }}">
+                                        <img src="{{ asset('uploads/products/thumbnails/' . $fp->image) }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="{{ $fp->name }}">
+                                    </a>
+
+                                    @if ($fp->badge)
+                                        <span class="absolute top-3 left-3 {{ str_contains($fp->badge, '%') ? 'bg-primary' : 'bg-[#1a1a1a]' }} text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full">
+                                            {{ $fp->badge }}
+                                        </span>
+                                    @endif
+
+                                    <!-- Wishlist -->
                                     <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-[#1a1a1a] hover:bg-primary hover:text-white transition-colors shadow-sm">
                                         <i class="ri-heart-line text-base"></i>
                                     </button>
+
                                     <div class="absolute inset-x-3 bottom-3 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                                         <a href="{{ route('home.index') }}" class="flex items-center justify-center gap-2 w-full bg-[#1a1a1a] text-white text-xs font-semibold tracking-[0.15em] uppercase py-3 rounded-lg hover:bg-primary transition-colors">
                                             <i class="ri-shopping-bag-line"></i> Add to Bag
                                         </a>
                                     </div>
                                 </div>
-                                <div class="mt-4 text-center">
-                                    <h4 class="text-sm font-semibold text-[#1a1a1a]"><a href="{{ route('home.index') }}" class="hover:text-primary transition-colors">{{ $p['name'] }}</a></h4>
-                                    <p class="text-[#1a1a1a] font-bold mt-1">${{ number_format($p['price'], 2) }}</p>
+
+                                <div class="mt-4 text-left">
+                                    <h4 class="text-lg font-semibold text-[#1a1a1a]">
+                                        <a href="{{ route('shop.productDetails', $fp->slug) }}" class="hover:text-primary transition-colors">{{ $fp->name }}</a>
+                                    </h4>
+                                    <p class="text-[#1a1a1a] font-bold mt-1">
+                                        @if ($fp->sale_price)
+                                            <span class="text-[#1a1a1a] font-bold">${{ number_format($fp->sale_price, 2) }}</span>
+                                            <span class="text-gray-400 line-through text-sm">${{ number_format($fp->regular_price, 2) }}</span>
+                                           @else
+                                            <span class="text-[#1a1a1a] font-bold">${{ number_format($fp->regular_price, 2) }}</span>
+                                        @endif
+                                    </p>
                                 </div>
                             </div>
                         </div>

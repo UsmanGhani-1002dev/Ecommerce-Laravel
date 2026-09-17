@@ -16,4 +16,16 @@ class ShopController extends Controller
         $products = Product::where('status','1')->orderBy('created_at','desc')->paginate(12);
         return view('shop.index', compact('products', 'categories', 'brands'));
     }
+
+    public function productDetails($slug)
+    {
+        $product = Product::where('slug',$slug)->first();
+        $relatedProducts = Product::where('category_id', $product->category_id)
+                                    ->where('id','!=', $product->id)
+                                    ->where('status', '1')
+                                    ->orderBy('created_at','desc')
+                                    ->take(6)
+                                    ->get();
+        return view('shop.details', compact('product','relatedProducts'));
+    }
 }

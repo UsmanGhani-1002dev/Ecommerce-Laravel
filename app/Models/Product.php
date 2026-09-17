@@ -22,7 +22,7 @@ class Product extends Model
     {
         if ($this->sale_price && $this->sale_price < $this->regular_price) {
             $discount = round((($this->regular_price - $this->sale_price) / $this->regular_price) * 100);
-            return "-{$discount}%";
+            return "-{$discount}%"; 
         }
 
         if ($this->featured) {

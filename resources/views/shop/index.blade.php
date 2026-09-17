@@ -2,7 +2,7 @@
     
 <!-- Main Content Start -->
 
-    <div class="relative bg-sky-700 text-white h-64 flex items-center justify-center bg-cover bg-center" style="background-image: url('assets/images/page-banner.jpg');">
+    <div class="relative bg-sky-700 text-white h-64 flex items-center justify-center bg-cover bg-center" style="background-image: url({{asset('assets/images/page-banner.jpg')}});
         <div class="absolute inset-0 bg-black bg-opacity-40"></div>
         <div class="relative z-10 text-center">
             <h2 class="text-4xl font-bold mb-2">Shop</h2>
@@ -108,9 +108,8 @@
                     @forelse ($products as $p)
                         <div class="group">
                             <div class="relative overflow-hidden rounded-xl bg-white aspect-[3/4]">
-                                <a href="{{ route('home.index') }}" class="block w-full h-full">
-                                    <img src="{{ asset('uploads/products/thumbnails/'.$p->image) }}" alt="{{ $p->name }}"
-                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                <a href="{{ route('shop.productDetails', $p->slug) }}" class="block w-full h-full">
+                                    <img src="{{ asset('uploads/products/thumbnails/'.$p->image) }}" alt="{{ $p->name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                                 </a>
 
                                 @if ($p->badge)
@@ -118,7 +117,6 @@
                                         {{ $p->badge }}
                                     </span>
                                 @endif  
-
 
                                 <!-- Wishlist -->
                                 <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-[#1a1a1a] hover:bg-primary hover:text-white transition-colors shadow-sm">
@@ -134,8 +132,8 @@
                             </div>
 
                             <div class="mt-4">
-                                <h4 class="text-md font-semibold text-[#1a1a1a]">
-                                    <a href="{{ route('home.index') }}" class="hover:text-primary transition-colors">{{ $p->name }}</a>
+                                <h4 class="text-lg font-semibold text-[#1a1a1a]">
+                                    <a href="{{ route('shop.productDetails',$p->slug) }}" class="hover:text-primary transition-colors">{{ $p->name }}</a>
                                 </h4>
                                 <div class="flex items-center gap-2 mt-1">
                                     @if ($p->sale_price)
@@ -148,7 +146,8 @@
                             </div>
                         </div>
                     @empty
-                        <div class="col-span-full text-center py-12">
+                        <div class="col-span-3 text-center py-6 border border-gray-100 rounded-lg bg-white shadow-sm">
+                            <i class="ri-error-warning-line text-primary text-2xl"></i>
                             <p class="text-gray-500">No products found.</p>
                         </div>
                     @endforelse
@@ -159,10 +158,10 @@
                     @forelse ($products as $p)
                         <div class="flex flex-col md:flex-row gap-6 bg-white border rounded-lg p-4 hover:shadow-lg transition">
                             <div class="w-full md:w-1/3 relative bg-gray-100 rounded overflow-hidden">
-                                <a href="{{ route('home.index') }}"><img src="{{ asset('uploads/products/thumbnails/'.$p->image) }}" alt="{{$p->name}}" class="w-full h-full object-cover"></a>
+                                <a href="{{ route('shop.productDetails', $p->slug) }}"><img src="{{ asset('uploads/products/thumbnails/'.$p->image) }}" alt="{{$p->name}}" class="w-full h-full object-cover"></a>
                             </div>
                             <div class="w-full md:w-2/3 flex flex-col justify-center">
-                                <h4 class="text-xl font-bold hover:text-primary mb-2"><a href="{{ route('home.index') }}">{{ $p->name }}</a></h4>
+                                <h4 class="text-xl font-bold hover:text-primary mb-2"><a href="{{ route('shop.productDetails', $p->slug) }}">{{ $p->name }}</a></h4>
                                 @if ($p->sale_price)
                                         <span class="text-[#1a1a1a] font-bold">${{ number_format($p->sale_price, 2) }}</span>
                                         <span class="text-gray-400 line-through text-sm">${{ number_format($p->regular_price, 2) }}</span>
